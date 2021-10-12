@@ -1,0 +1,31 @@
+Exemplo Malloc em bloco de notas
+
+#include <stdio.h> // Standard I/O (Input/Output)
+#include <stdlib.h> // Standard Library
+
+int main(void) {
+    printf("Hello World\n");
+    
+    int * valores;
+    // aloca 40 bytes
+    // valores = malloc(40);
+
+    // aloca 10 vezes tamanho de int
+    // (dá 40 bytes do mesmo jeito, mas sem a gente precisar fazer a conta)
+    valores = malloc(10*sizeof (int));
+
+    int i;
+    for (i = 0; i < 10; i++)
+        valores[i] = 11*i;
+    
+    printf("Conteudo do vetor:\n");
+
+    for (i = 0; i < 10; i++)
+        printf("%d ", valores[i]);
+    printf("\n");
+
+    free(valores);
+
+    return 0;
+}
+
