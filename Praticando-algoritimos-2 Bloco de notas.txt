@@ -1,0 +1,56 @@
+Praticando-algoritimos-2 Bloco de notas
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void bubleSort(int N[],unsigned tamanho){
+ for(int i;i<tamanho;i++){
+   for(int j=i+1;j<tamanho;j++){
+     if(N[i]>N[j]){
+       int aux;
+       aux=N[j];
+       N[j]=N[i];
+       N[i]=aux;
+     }
+   }
+ }
+}
+int buscaSequencial(int N[],unsigned inicio,unsigned fim,int buscado){
+
+  if(N[inicio]==buscado){
+    return printf("No lugar de memoria do vetor igual a %d\nencontrei o numero buscado:%d\n",inicio,buscado);
+  }else if(inicio==fim){
+    return printf("Não achei\n");
+  }else return buscaSequencial(N,inicio+1,fim,buscado);
+}
+
+int buscaBinaria(int N[],int inicio,int fim,int buscado){
+  int meio = (inicio+fim)/2;
+  if(N[meio]==buscado){
+    return printf("Achei o numero %d no lugar %d do vetor\n",buscado,meio);
+  }
+  if(inicio>fim){
+    return printf("Não achei o %d no vetor\n",buscado);
+  }
+  if(N[meio]>buscado){
+    return buscaBinaria(N,inicio,meio-1,buscado);
+  }
+  else 
+    return buscaBinaria(N,meio+1,fim,buscado);
+}
+int main(void){
+  srand(time(NULL));
+
+int v[10],procurado;
+for(int i=0;i<11;i++){
+  v[i]=rand()%10;
+  printf("%d ",v[i]);
+}
+bubleSort(v,11);
+for(int i=0;i<11;i++){
+  printf("%d\n",v[i]);
+}
+buscaBinaria(v,0,11,3);
+  return 0;
+}
